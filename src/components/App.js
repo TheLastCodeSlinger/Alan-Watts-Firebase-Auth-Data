@@ -7,6 +7,7 @@ import Signup from "./Signup";
 import Dashboard from "./Placeholder";
 import Login from "./Login";
 import ForgotPassword from "./ForgotPassword";
+import Content from "./Content";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             </Route>
             <Route path="/forgot-password">
               <ForgotPassword />
+            </Route>
+            <Route path="/content">
+              <Content />
             </Route>
           </Switch>
         </Router>
