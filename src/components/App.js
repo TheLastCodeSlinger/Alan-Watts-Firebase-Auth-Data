@@ -8,6 +8,7 @@ import Dashboard from "./Placeholder";
 import Login from "./Login";
 import ForgotPassword from "./ForgotPassword";
 import Content from "./Content";
+import Quotes from "./QuoteDisplay";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
             </Route>
             <Route path="/content">
               <Content />
+            </Route>
+            <Route path="/quotes">
+              <Quotes />
             </Route>
           </Switch>
         </Router>
