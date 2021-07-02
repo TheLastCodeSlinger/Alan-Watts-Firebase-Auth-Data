@@ -10,10 +10,14 @@ const Wrapper = styled.div`
 `;
 const ItemWrapper = styled.div`
   display: flex;
-  width: 80%;
+  width: 90%;
   margin: 50px auto;
   align-items: center;
   justify-content: center;
+
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    flex-direction: column;
+  }
 `;
 const ImageWrapper = styled.figure`
   display: flex;
@@ -23,6 +27,11 @@ const ImageWrapper = styled.figure`
   flex: 1 1 40%;
   align-items: center;
   justify-content: center;
+
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    max-width: 55%;
+    flex: 1 1 55%;
+  }
 `;
 const Image = styled.img`
   height: 100%;
@@ -40,6 +49,11 @@ const PersonInfoWrapper = styled.div`
   background-color: pink;
   line-height: 1.6;
   font-size: 17px;
+
+  @media ${(props) => props.theme.mediaQueries.medium} {
+    max-width: 90%;
+    flex: 1 1 90%;
+  }
 `;
 
 export default function Content() {
