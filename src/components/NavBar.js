@@ -40,7 +40,6 @@ const NavLinks = styled(NavLink)`
 
 export default function Navbar() {
   const { currentUser, logout } = useAuth();
-  console.log(currentUser);
   return (
     <NavbarWrapper>
       <NavItems>
