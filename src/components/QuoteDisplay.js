@@ -57,7 +57,6 @@ export default function QuoteDisplay() {
 
   useEffect(() => {
     setCurrentQuote(Quotes[Math.floor(Math.random() * 100)]);
-    console.log(currentQuote);
   }, []);
 
   const nextQuoteHandler = () => {

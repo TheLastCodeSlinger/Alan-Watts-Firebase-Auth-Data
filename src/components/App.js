@@ -9,12 +9,14 @@ import Login from "./Login";
 import ForgotPassword from "./ForgotPassword";
 import Content from "./Content";
 import Quotes from "./QuoteDisplay";
+import Navbar from "./NavBar";
 
 function App() {
   return (
     <>
       <AuthProvider>
         <Router>
+          <Navbar />
           <Switch>
             <PrivateRoute path="/" exact component={Dashboard} />
             <Route path="/signup">
