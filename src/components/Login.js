@@ -14,15 +14,16 @@ const AuthWrapper = styled.div`
   flex-direction: column;
   font-family: Helvetica;
   padding-bottom: 20px;
+  background-color: rgb(232, 237, 233);
+
 `;
 
 const FormContainer = styled.form`
   width: 70%;
-  min-height: 45%;
+  min-height: 30vh;
   height: auto;
   margin: 10px 0;
   padding: 20px;
-  border: 1px solid green;
   display: flex;
   flex-direction: column;
 `;
@@ -36,12 +37,14 @@ const Input = styled.input`
 
 const Button = styled.button`
   width: 60%;
-  padding: 10px;
+  padding: 17px;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 40px;
   background-color: lightblue;
   border: none;
   border-radius: 5px;
+  font-size: 25px;
+  font-weight: 700;
   align-self: center;
 `;
 

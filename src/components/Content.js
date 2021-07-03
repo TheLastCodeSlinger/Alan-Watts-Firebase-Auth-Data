@@ -46,7 +46,6 @@ const PersonInfoWrapper = styled.div`
   max-width: 60%;
   width: 100%;
   align-items: center;
-  background-color: pink;
   line-height: 1.6;
   font-size: 17px;
 

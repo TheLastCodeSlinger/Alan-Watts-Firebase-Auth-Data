@@ -43,7 +43,7 @@ export default function Navbar() {
   return (
     <NavbarWrapper>
       <NavItems>
-        <NavLinks to="/content">Conttent</NavLinks>
+        <NavLinks to="/content">Content</NavLinks>
         <NavLinks to="/quotes">Quotes</NavLinks>
         {currentUser ? (
           <>
