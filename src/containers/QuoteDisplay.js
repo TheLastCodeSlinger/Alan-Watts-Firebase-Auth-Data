@@ -67,7 +67,6 @@ const Button = styled.button`
     background-color: grey;
     color: white;
   }`}
-
     &:active {
     transform: translate(5px, 20%);
   }
@@ -93,6 +92,20 @@ export default function QuoteDisplay({ bookmark, setBookmark }) {
   useEffect(() => {
     setCurrentQuote(Quotes[Math.floor(Math.random() * 100)]);
   }, []);
+
+  //Checks if the Quote is already in bookmark. True/False for Bookmarkbutton-styling
+  useEffect(() => {
+    const checkForBookmark = () => {
+      if (bookmark.filter((id) => id.id === currentQuote.id).length === 1) {
+        setShowBookmark(true);
+      } else if (
+        bookmark.filter((id) => id.id === currentQuote.id).length === 0
+      ) {
+        setShowBookmark(false);
+      }
+    };
+    checkForBookmark();
+  }, [currentQuote]);
 
   const nextQuoteHandler = () => {
     if (currentQuote && currentQuote.id === Quotes.length) {
