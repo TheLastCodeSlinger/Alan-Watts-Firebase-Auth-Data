@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "../components/PrivateRoute";
 
@@ -16,6 +16,16 @@ import Bookmarks from "../components/Bookmarks";
 
 function App() {
   const [bookmark, setBookmark] = useState([])
+
+  useEffect(() => {
+      //setBookmark(localStorage.getItem('bookmarks'))
+      const storage = JSON.parse(localStorage.getItem('bookmarks') || []);
+      console.log(localStorage.getItem('bookmarks').length, storage);
+      setBookmark(storage)
+      
+    
+  }, [])
+
   return (
     <>
       <AuthProvider>

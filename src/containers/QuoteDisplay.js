@@ -90,6 +90,10 @@ export default function QuoteDisplay({ bookmark, setBookmark }) {
   const [showBookmark, setShowBookmark] = useState(false);
 
   useEffect(() => {
+    localStorage.setItem("bookmarks", JSON.stringify(bookmark));
+  }, [bookmark]);
+
+  useEffect(() => {
     setCurrentQuote(Quotes[Math.floor(Math.random() * 100)]);
   }, []);
 
@@ -105,7 +109,9 @@ export default function QuoteDisplay({ bookmark, setBookmark }) {
       }
     };
     checkForBookmark();
-  }, [currentQuote]);
+  }, [currentQuote, bookmark]);
+
+
 
   const nextQuoteHandler = () => {
     if (currentQuote && currentQuote.id === Quotes.length) {
