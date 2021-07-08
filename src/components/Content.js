@@ -3,9 +3,9 @@ import React from "react";
 import styled from "styled-components";
 
 import AlanWatts from "../images/Alan/alanwatts.jpg";
-import AlanEarly from '../images/Alan/AlanAge21.jpg';
-import AlanMiddle from '../images/Alan/AlanAge36.jpg';
-import AlanLate from '../images/Alan/AlanLate.jpg';
+import AlanEarly from "../images/Alan/AlanAge21.jpg";
+import AlanMiddle from "../images/Alan/AlanAge36.jpg";
+import AlanLate from "../images/Alan/AlanLate.jpg";
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,7 +20,8 @@ const ItemWrapper = styled.div`
   justify-content: center;
 
   @media ${(props) => props.theme.mediaQueries.medium} {
-    flex-direction: ${props => (props.position === "left" ? "column" : "column-reverse" )};
+    flex-direction: ${(props) =>
+      props.position === "left" ? "column" : "column-reverse"};
   }
 `;
 const ImageWrapper = styled.figure`
@@ -125,15 +126,15 @@ States in 1938, Alan became an Episcopal priest for a time, and then
 relocated to Millbrook, New York, where he wrote his pivotal book
 The Wisdom of Insecurity: A Message for an Age of Anxiety. In 1951
 he moved to San Francisco where he began teaching Buddhist studies,
-and in 1956 began his popular radio show, “Way Beyond the West.” By
-the early sixties, Alan’s radio talks aired nationally and the
-counterculture movement adopted him as a spiritual spokesperson. He
+and in 1956 began his popular radio show, “Way Beyond the West.” By 
+the early sixties, Alan’s radio talks aired nationally and the 
+counterculture movement adopted him as a spiritual spokesperson. He 
 wrote and traveled regularly until his passing in 1973.`;
 
-const AlansBioComment = `“Perhaps the foremost interpreter of Eastern disciplines for the
-contemporary West, Alan Watts had the rare gift of ‘writing
-beautifully the un-writable’. Watts begins with scholarship and
-intellect and proceeds with art and eloquence to the frontiers of
+const AlansBioComment = `“Perhaps the foremost interpreter of Eastern disciplines for the 
+contemporary West, Alan Watts had the rare gift of ‘writing 
+beautifully the un-writable’. Watts begins with scholarship and 
+intellect and proceeds with art and eloquence to the frontiers of 
 the spirit. A fascinating entry into the deepest ways of knowing.”`;
 
 const AlansEarlyYears = `
@@ -157,27 +158,25 @@ const AlansMiddleYears = `
 Watts left the faculty in the mid-1950s. In 1953, he began what became a long-running weekly radio program 
 at Pacifica Radio station KPFA in Berkeley. Like other volunteer programmers at the listener-sponsored 
 station, Watts was not paid for his broadcasts. These weekly broadcasts continued until 1962, by 
-which time he had attracted a "legion of regular listeners".
+which time he had attracted a "legion of regular listeners". 
 Watts continued to give numerous talks and seminars, recordings of which were broadcast on KPFA 
 and other radio stations during his life. These recordings are broadcast to this day. For example, in 
 1970 Watts lectures were broadcast on Sunday mornings on San Francisco radio station KSAN and even today 
 a number of radio stations continue to have an Alan Watts program in their weekly program schedules. 
 Original tapes of his broadcasts and talks are currently held by the Pacifica Radio Archives, based 
-at KPFK in Los Angeles, and at the Electronic University archive founded by his son, Mark Watts.
-In 1957 Watts, then 42, published one of his best known books, ${(
-  <span>The Way of Zen</span>
-)}, which 
+at KPFK in Los Angeles, and at the Electronic University archive founded by his son, Mark Watts. 
+In 1957 Watts, then 42, published one of his best known books, The Way of Zen, which 
 focused on philosophical explication and history. Besides drawing on the lifestyle and philosophical 
 background of Zen in India and China, Watts introduced ideas drawn from general semantics 
 (directly from the writings of Alfred Korzybski) and also from Norbert Wiener's early work on cybernetics, 
 which had recently been published. Watts offered analogies from cybernetic principles possibly applicable to the Zen 
-life. The book sold well, eventually becoming a modern classic, and helped widen his lecture circuit.
+life. The book sold well, eventually becoming a modern classic, and helped widen his lecture circuit. 
 In 1958, Watts toured parts of Europe with his father, meeting the Swiss psychiatrist Carl Jung and the German 
-psychotherapist Karlfried Graf Dürckheim.
+psychotherapist Karlfried Graf Dürckheim. 
 Upon returning to the United States, Watts recorded two seasons of a television series (1959–1960) for KQED public 
-television in San Francisco, "Eastern Wisdom and Modern Life".
+television in San Francisco, "Eastern Wisdom and Modern Life". 
 In the 1960s, Watts became interested in how identifiable patterns in nature tend to repeat themselves from the 
-smallest of scales to the most immense. This became one of his passions in his research and thought.
+smallest of scales to the most immense. This became one of his passions in his research and thought. 
 Though never affiliated for long with any one academic institution, he was Professor of Comparative Philosophy at 
 the California Institute of Integral Studies, had a fellowship at Harvard University (1962–1964), and was a Scholar 
 at San Jose State University (1968). He also lectured college and university students as well as the general 
@@ -189,20 +188,17 @@ but rather "a philosophical entertainer".`;
 const AlansLateYears = `In his writings of the 1950s, he conveyed his admiration for the practicality in the historical 
 achievements of Chán (Zen) in the Far East, for it had fostered farmers, architects, builders, folk physicians, artists, 
 and administrators among the monks who had lived in the monasteries of its lineages. In his mature work, he presents 
-himself as "Zennist" in spirit as he wrote in ${(
-  <span>his last book, Tao: The Watercourse Way.</span>
-)} Child rearing, 
+himself as "Zennist" in spirit as he wrote in 
+his last book, Tao: The Watercourse Way. Child rearing, 
 the arts, cuisine, education, law and freedom, architecture, sexuality, and the uses and abuses of technology were 
 all of great interest to him. Though known for his discourses on Zen, he was also influenced by ancient Hindu scriptures, 
-especially Vedanta and Yoga. ${(
-  <span>
-    He spoke extensively about the nature of the divine reality which Man
-    misses: how the contradiction of opposites is the method of life and the
-    means of cosmic and human evolution, how our fundamental Ignorance is rooted
-    in the exclusive nature of mind and ego, how to come in touch with the Field
-    of Consciousness and Light, and other cosmic principles.
-  </span>
-)} Watts sought to resolve his feelings of alienation from the institutions of 
+especially Vedanta and Yoga. 
+He spoke extensively about the nature of the divine reality which Man 
+misses: how the contradiction of opposites is the method of life and the 
+means of cosmic and human evolution, how our fundamental Ignorance is rooted 
+in the exclusive nature of mind and ego, how to come in touch with the Field 
+of Consciousness and Light, and other cosmic principles. 
+Watts sought to resolve his feelings of alienation from the institutions of 
 marriage and the values of American society, as revealed in his comments on love relationships in "Divine Madness" 
 and on perception of the organism-environment in "The Philosophy of Nature". In looking at social issues he was 
 concerned with the necessity for international peace, for tolerance and understanding among disparate cultures. 

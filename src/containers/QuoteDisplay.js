@@ -52,12 +52,24 @@ const Button = styled.button`
   width: 100px;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
+  background-color: ${(props) => (props.marked ? "grey" : "transparent")};
+  color: ${(props) => (props.marked ? "white" : "black")};
   border: 3px dashed black;
 
-  &:hover {
+  &:hover
+    ${(props) =>
+      props.marked
+        ? `{
+    background-color: transparent;
+    color: black;
+  }`
+        : `{
     background-color: grey;
     color: white;
+  }`}
+
+    &:active {
+    transform: translate(5px, 20%);
   }
 `;
 
@@ -76,6 +88,7 @@ const Quote = styled.h2`
 
 export default function QuoteDisplay({ bookmark, setBookmark }) {
   const [currentQuote, setCurrentQuote] = useState("");
+  const [showBookmark, setShowBookmark] = useState(false);
 
   useEffect(() => {
     setCurrentQuote(Quotes[Math.floor(Math.random() * 100)]);
@@ -93,26 +106,27 @@ export default function QuoteDisplay({ bookmark, setBookmark }) {
     if (currentQuote && currentQuote.id === 1) {
       setCurrentQuote(Quotes[Quotes.length - 1]);
     } else {
-      //-2, because the currentQuoteId starts by 1 whereas arrays that by 0
+      //-2, because the currentQuoteId starts at 1 whereas arrays that by 0
       setCurrentQuote(Quotes[currentQuote.id - 2]);
     }
   };
 
   const setBookmarkHandler = () => {
-    //console.log("YOU SHITTING?", bookmark, "current", currentQuote);
-
-    if(bookmark.length === 0 || bookmark.filter(id => id.id !== currentQuote.id)){
-      setBookmark([...bookmark, currentQuote])
+    if (
+      // Checks if the currentQuote is bookmarked. If false, then copy object, add the currentquote and change setShowBookmark to true for visual display.
+      bookmark.length === 0 ||
+      bookmark.filter((id) => id.id === currentQuote.id).length === 0
+    ) {
+      setBookmark([...bookmark, currentQuote]);
+      setShowBookmark(true);
+    } else if (
+      bookmark.filter((id) => id.id === currentQuote.id).length === 1
+    ) {
+      const removeBookmark = bookmark.filter((id) => id.id !== currentQuote.id);
+      setBookmark(removeBookmark);
+      setShowBookmark(false);
     }
-    console.log(bookmark.filter(id => id.id !== currentQuote.id), "LOGGGY")
-  
-          //setBookmark([...bookmark, currentQuote])
-          //console.log(bookmark.filter(id => id.id === currentQuote.id));
-  
-      
-    
   };
-
 
   return (
     <Wrapper>
@@ -123,7 +137,9 @@ export default function QuoteDisplay({ bookmark, setBookmark }) {
             <NavigateBefore />
             {"Prev"}
           </Button>
-          <Button onClick={setBookmarkHandler}>Bookmark</Button>
+          <Button marked={showBookmark} onClick={setBookmarkHandler}>
+            Bookmark
+          </Button>
           <Button onClick={() => nextQuoteHandler()}>
             <NavigateNextIcon />
             {"Next"}
