@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
-import { Quotes } from "./Quotes";
-import Background from "./BambooBackgroundjpg.jpg";
+import { Quotes } from "../components/Quotes";
+import Background from "../images/Background/BambooBackgroundjpg.jpg";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { NavigateBefore } from "@material-ui/icons";
 
@@ -39,7 +39,7 @@ const Header = styled.h2`
   font-size: 30px;
   font-weight: 500;
   text-align: center;
-  box-shadow: 10px 20px 20px ${props => props.theme.colors.main};
+  box-shadow: 10px 20px 20px ${(props) => props.theme.colors.main};
   max-width: 750px;
   margin: 10px auto;
 `;
@@ -67,14 +67,14 @@ const ButtonWrapper = styled.div`
 `;
 
 const Quote = styled.h2`
-font-size: 30px;
-font-weight: 700;
-text-align: center;
-border: 5px ridge lightgrey;
-box-shadow: 0 5px 10px black
-`
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  border: 5px ridge lightgrey;
+  box-shadow: 0 5px 10px black;
+`;
 
-export default function QuoteDisplay() {
+export default function QuoteDisplay({ bookmark, setBookmark }) {
   const [currentQuote, setCurrentQuote] = useState("");
 
   useEffect(() => {
@@ -98,6 +98,22 @@ export default function QuoteDisplay() {
     }
   };
 
+  const setBookmarkHandler = () => {
+    //console.log("YOU SHITTING?", bookmark, "current", currentQuote);
+
+    if(bookmark.length === 0 || bookmark.filter(id => id.id !== currentQuote.id)){
+      setBookmark([...bookmark, currentQuote])
+    }
+    console.log(bookmark.filter(id => id.id !== currentQuote.id), "LOGGGY")
+  
+          //setBookmark([...bookmark, currentQuote])
+          //console.log(bookmark.filter(id => id.id === currentQuote.id));
+  
+      
+    
+  };
+
+
   return (
     <Wrapper>
       <BackgroundImage imgOpacity={"0.5"} />
@@ -107,6 +123,7 @@ export default function QuoteDisplay() {
             <NavigateBefore />
             {"Prev"}
           </Button>
+          <Button onClick={setBookmarkHandler}>Bookmark</Button>
           <Button onClick={() => nextQuoteHandler()}>
             <NavigateNextIcon />
             {"Next"}

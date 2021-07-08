@@ -45,7 +45,7 @@ export default function Navbar() {
       <NavItems>
         <NavLinks to="/content">Content</NavLinks>
         <NavLinks to="/quotes">Quotes</NavLinks>
-        {currentUser ? (
+        {!currentUser ? (
           <>
             <NavLinks to="/bookmarks">Bookmarks</NavLinks>
             <div onClick={logout}>
