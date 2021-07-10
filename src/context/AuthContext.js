@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 
-import { auth } from "../firebase";
+import { auth } from "../Firebase&Axios/firebase";
 
 const AuthContext = createContext();
 
@@ -35,6 +35,7 @@ export function AuthProvider({ children }) {
     });
     return unsubscribe;
   }, []);
+
 
   const value = {
     currentUser,

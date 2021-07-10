@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import Background from '../images/Background/BambooBackgroundjpg.jpg'
+import Background from "../images/Background/BambooBackgroundjpg.jpg";
 
 const Wrapper = styled.div`
   position: relative;
@@ -50,21 +50,23 @@ const Quote = styled.h2`
   box-shadow: 0 5px 10px black;
 `;
 
+export default function Bookmarks({ bookmark }) {
 
+  const mapBookmarks = () =>
+    bookmark.map((item) => {
+      return (
+        <QuoteContainer key={item.id}>
+          <Quote>{item.quote}</Quote>
+        </QuoteContainer>
+      );
+    });
+    console.log(bookmark);
 
-export default function Bookmarks({bookmark, setBookmark}) {
-    
-    const mapBookmarks = () => (
-        bookmark.map(item => {
-            return <QuoteContainer key={item.id}><Quote>{item.quote}</Quote></QuoteContainer>
-        })
-    )
-    console.log(bookmark, "BOOKMARKS");
-    return (
-        <Wrapper>
-            <BackgroundImage imgOpacity={"0.5"} />
-            <Header>Favorite Quotes</Header>
-            {mapBookmarks()}
-        </Wrapper>
-        )
+  return (
+    <Wrapper>
+      <BackgroundImage imgOpacity={"0.5"} />
+      <Header>Favorite Quotes</Header>
+      {bookmark && mapBookmarks()}
+    </Wrapper>
+  );
 }

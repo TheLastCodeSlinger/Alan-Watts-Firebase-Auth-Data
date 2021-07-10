@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+
 import styled from "styled-components";
+
 import { useAuth } from "../context/AuthContext";
 
 const NavbarWrapper = styled.div`
@@ -38,17 +40,24 @@ const NavLinks = styled(NavLink)`
   }
 `;
 
-export default function Navbar() {
+export default function Navbar({setBookmark}) {
   const { currentUser, logout } = useAuth();
+
+  const logoutHandler = () => {
+    localStorage.clear();
+    setBookmark();
+    logout()
+  }
+
   return (
     <NavbarWrapper>
       <NavItems>
         <NavLinks to="/content">Content</NavLinks>
         <NavLinks to="/quotes">Quotes</NavLinks>
-        {!currentUser ? (
+        {currentUser ? (
           <>
             <NavLinks to="/bookmarks">Bookmarks</NavLinks>
-            <div onClick={logout}>
+            <div onClick={logoutHandler}>
               <NavLinks to="/content">Logout</NavLinks>
             </div>
           </>

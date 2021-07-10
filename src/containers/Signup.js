@@ -47,6 +47,7 @@ const Button = styled.button`
   align-self: center;
 `;
 
+
 const AuthCard = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -62,7 +63,7 @@ const AuthCard = () => {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
-
+    
     try {
       setError("");
       setLoading(true);

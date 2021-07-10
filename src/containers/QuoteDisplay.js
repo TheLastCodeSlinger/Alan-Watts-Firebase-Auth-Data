@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
-import { Quotes } from "../components/Quotes";
+import { useAuth } from "../context/AuthContext";
+import { Quotes } from "../quotes/Quotes";
 import Background from "../images/Background/BambooBackgroundjpg.jpg";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { NavigateBefore } from "@material-ui/icons";
+import firebaseURL from "../Firebase&Axios/FirebaseAxios";
 
 const Wrapper = styled.div`
   position: relative;
@@ -88,6 +90,7 @@ const Quote = styled.h2`
 export default function QuoteDisplay({ bookmark, setBookmark }) {
   const [currentQuote, setCurrentQuote] = useState("");
   const [showBookmark, setShowBookmark] = useState(false);
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmark));
@@ -97,21 +100,21 @@ export default function QuoteDisplay({ bookmark, setBookmark }) {
     setCurrentQuote(Quotes[Math.floor(Math.random() * 100)]);
   }, []);
 
-  //Checks if the Quote is already in bookmark. True/False for Bookmarkbutton-styling
+  //Checks if next/current Quote is already bookmarked or not. True/False change ButtonBackground for UX.
   useEffect(() => {
     const checkForBookmark = () => {
-      if (bookmark.filter((id) => id.id === currentQuote.id).length === 1) {
-        setShowBookmark(true);
+      if (
+        bookmark &&
+        bookmark.filter((id) => id.id === currentQuote.id).length === 1) {
+          setShowBookmark(true);
       } else if (
-        bookmark.filter((id) => id.id === currentQuote.id).length === 0
-      ) {
-        setShowBookmark(false);
+        bookmark &&
+        bookmark.filter((id) => id.id === currentQuote.id).length === 0) {
+          setShowBookmark(false);
       }
     };
-    checkForBookmark();
+    return checkForBookmark();
   }, [currentQuote, bookmark]);
-
-
 
   const nextQuoteHandler = () => {
     if (currentQuote && currentQuote.id === Quotes.length) {
@@ -125,27 +128,51 @@ export default function QuoteDisplay({ bookmark, setBookmark }) {
     if (currentQuote && currentQuote.id === 1) {
       setCurrentQuote(Quotes[Quotes.length - 1]);
     } else {
-      //-2, because the currentQuoteId starts at 1 whereas arrays that by 0
       setCurrentQuote(Quotes[currentQuote.id - 2]);
+      //-2 => Array starts at 0, id at 1
+    }
+  };
+  
+  const addRemoveBookmarkHandler = () => {
+    if (
+      bookmark.length === 0 ||
+      bookmark.filter((id) => id.id === currentQuote.id).length === 0) {
+        setBookmark([...bookmark, currentQuote]);
+        addBookmarkToDatabase();
+        setShowBookmark(true);
+    } else if (
+      bookmark.filter((id) => id.id === currentQuote.id).length === 1) {
+        const removeBookmark = bookmark.filter((id) => id.id !== currentQuote.id);
+        setBookmark(removeBookmark);
+        removeBookmarkFromDatabase(removeBookmark);
+        setShowBookmark(false);
     }
   };
 
-  const setBookmarkHandler = () => {
-    if (
-      // Checks if the currentQuote is bookmarked. If false, then copy object, add the currentquote and change setShowBookmark to true for visual display.
-      bookmark.length === 0 ||
-      bookmark.filter((id) => id.id === currentQuote.id).length === 0
-    ) {
-      setBookmark([...bookmark, currentQuote]);
-      setShowBookmark(true);
-    } else if (
-      bookmark.filter((id) => id.id === currentQuote.id).length === 1
-    ) {
-      const removeBookmark = bookmark.filter((id) => id.id !== currentQuote.id);
-      setBookmark(removeBookmark);
-      setShowBookmark(false);
-    }
+  const addBookmarkToDatabase = async() => {
+    await firebaseURL({
+      method: "put",
+      url: `user-${currentUser.uid}.json`,
+      data: {
+        bookmarks: JSON.stringify([...bookmark, currentQuote]),
+      },
+    })
+      .then((response) => console.log(response, "ASDASDDDDDDD"))
+      .catch((err) => console.log(err, "err"));
   };
+
+  const removeBookmarkFromDatabase = async(removeBookmark) => {
+    await firebaseURL({
+      method: "put",
+      url: `user-${currentUser.uid}.json`,
+      data: {
+        bookmarks: JSON.stringify(removeBookmark),
+      },
+    })
+      .then((response) => console.log(response, "ASDASDDDDDDD"))
+      .catch((err) => console.log(err, "err"));
+  };
+
 
   return (
     <Wrapper>
@@ -156,7 +183,11 @@ export default function QuoteDisplay({ bookmark, setBookmark }) {
             <NavigateBefore />
             {"Prev"}
           </Button>
-          <Button marked={showBookmark} onClick={setBookmarkHandler}>
+          <Button
+            marked={showBookmark}
+            type="submit"
+            onClick={addRemoveBookmarkHandler}
+          >
             Bookmark
           </Button>
           <Button onClick={() => nextQuoteHandler()}>

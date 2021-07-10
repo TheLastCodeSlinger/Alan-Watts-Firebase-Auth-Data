@@ -113,6 +113,7 @@ export default function Content() {
         </PersonInfoWrapper>
         <ImageWrapper>
           <Image src={`${AlanLate}`} />
+          <figcaption>Alan Watts holding "Nonsense Poems" on the ferryboat Vellejo. (1967)</figcaption>
         </ImageWrapper>
       </ItemWrapper>
     </Wrapper>
